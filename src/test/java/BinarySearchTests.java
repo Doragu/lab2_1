@@ -13,6 +13,7 @@ class BinarySearchTests {
     private static final int[] ONE_ELEMENT_SEQUENCE = {2};
     private static final int[] ODD_MULTI_ELEMENT_SEQUENCE = {-3, 0, 1, 2, 3, 4, 10};
     private static final int[] EVEN_MULTI_ELEMENT_SEQUENCE = {-3, 0, 1, 2, 3, 4, 7, 10};
+    private static final int[] UNSORTED_MULTI_ELEMENT_SEQUENCE = {-3, 0, 1, 2, 3, 4, 7, 10, -1};
     private static final BinarySearch BINARY_SEARCH = BinarySearch.create();
     private static final int NOT_FOUND_POSITION = -1;
 
@@ -111,5 +112,14 @@ class BinarySearchTests {
         Assertions.assertThrows(NullPointerException.class, () -> {
             BINARY_SEARCH.search(KEY, ONE_ELEMENT_SEQUENCE);
         });
+    }
+
+    @Test void searchForElementInUnsortedSequence() {
+        final int KEY = -1;
+
+        SearchResult searchResult = BINARY_SEARCH.search(KEY, UNSORTED_MULTI_ELEMENT_SEQUENCE);
+
+        assertThat(searchResult.isFound(), is(false));
+        assertThat(searchResult.getPosition(), is(NOT_FOUND_POSITION));
     }
 }
