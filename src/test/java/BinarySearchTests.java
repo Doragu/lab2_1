@@ -3,6 +3,9 @@ import edu.iis.mto.bsearch.SearchResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 class BinarySearchTests {
 
     private static final int[] EMPTY_SEQUENCE = {};
@@ -18,9 +21,9 @@ class BinarySearchTests {
 
         SearchResult searchResult = BINARY_SEARCH.search(KEY, ONE_ELEMENT_SEQUENCE);
 
-        Assertions.assertTrue(searchResult.isFound());
-        Assertions.assertEquals(searchResult.getPosition(), EXPECTED_POSITION);
-        Assertions.assertEquals(ONE_ELEMENT_SEQUENCE[searchResult.getPosition()], KEY);
+        assertThat(searchResult.isFound(), is(true));
+        assertThat(searchResult.getPosition(), is(EXPECTED_POSITION));
+        assertThat(ONE_ELEMENT_SEQUENCE[searchResult.getPosition()], is(KEY));
     }
 
     @Test void searchForElementNotInSequence() {
@@ -28,8 +31,8 @@ class BinarySearchTests {
 
         SearchResult searchResult = BINARY_SEARCH.search(KEY, ONE_ELEMENT_SEQUENCE);
 
-        Assertions.assertFalse(searchResult.isFound());
-        Assertions.assertEquals(searchResult.getPosition(), NOT_FOUND_POSITION);
+        assertThat(searchResult.isFound(), is(false));
+        assertThat(searchResult.getPosition(), is(NOT_FOUND_POSITION));
     }
 
     @Test void searchForElementAtFirstPositionInMultiSequence() {
@@ -38,9 +41,9 @@ class BinarySearchTests {
 
         SearchResult searchResult = BINARY_SEARCH.search(KEY, MULTI_ELEMENT_SEQUENCE);
 
-        Assertions.assertTrue(searchResult.isFound());
-        Assertions.assertEquals(searchResult.getPosition(), EXPECTED_POSITION);
-        Assertions.assertEquals(MULTI_ELEMENT_SEQUENCE[searchResult.getPosition()], KEY);
+        assertThat(searchResult.isFound(), is(true));
+        assertThat(searchResult.getPosition(), is(EXPECTED_POSITION));
+        assertThat(MULTI_ELEMENT_SEQUENCE[searchResult.getPosition()], is(KEY));
     }
 
     @Test void searchForElementAtLastPositionInMultiSequence() {
@@ -49,9 +52,9 @@ class BinarySearchTests {
 
         SearchResult searchResult = BINARY_SEARCH.search(KEY, MULTI_ELEMENT_SEQUENCE);
 
-        Assertions.assertTrue(searchResult.isFound());
-        Assertions.assertEquals(searchResult.getPosition(), EXPECTED_POSITION);
-        Assertions.assertEquals(MULTI_ELEMENT_SEQUENCE[searchResult.getPosition()], KEY);
+        assertThat(searchResult.isFound(), is(true));
+        assertThat(searchResult.getPosition(), is(EXPECTED_POSITION));
+        assertThat(MULTI_ELEMENT_SEQUENCE[searchResult.getPosition()], is(KEY));
     }
 
     @Test void searchForElementAtMiddlePositionInMultiSequence() {
@@ -60,9 +63,9 @@ class BinarySearchTests {
 
         SearchResult searchResult = BINARY_SEARCH.search(KEY, MULTI_ELEMENT_SEQUENCE);
 
-        Assertions.assertTrue(searchResult.isFound());
-        Assertions.assertEquals(searchResult.getPosition(), EXPECTED_POSITION);
-        Assertions.assertEquals(MULTI_ELEMENT_SEQUENCE[searchResult.getPosition()], KEY);
+        assertThat(searchResult.isFound(), is(true));
+        assertThat(searchResult.getPosition(), is(EXPECTED_POSITION));
+        assertThat(MULTI_ELEMENT_SEQUENCE[searchResult.getPosition()], is(KEY));
     }
 
     @Test void searchForElementNotInMultiSequence() {
@@ -70,8 +73,8 @@ class BinarySearchTests {
 
         SearchResult searchResult = BINARY_SEARCH.search(KEY, MULTI_ELEMENT_SEQUENCE);
 
-        Assertions.assertFalse(searchResult.isFound());
-        Assertions.assertEquals(searchResult.getPosition(), NOT_FOUND_POSITION);
+        assertThat(searchResult.isFound(), is(false));
+        assertThat(searchResult.getPosition(), is(NOT_FOUND_POSITION));
     }
 
     @Test void searchForElementInEmptySequence() {
