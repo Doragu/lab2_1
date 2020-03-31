@@ -1,5 +1,5 @@
-import edu.iis.mto.bsearch.BinarySearch;
-import edu.iis.mto.bsearch.SearchResult;
+package edu.iis.mto.bsearch;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
