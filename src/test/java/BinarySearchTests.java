@@ -5,9 +5,12 @@ import org.junit.jupiter.api.Test;
 
 class BinarySearchTests {
 
+    private static final int[] EMPTY_SEQUENCE = {};
+    private static final int[] NULL_SEQUENCE = null;
     private static final int[] ONE_ELEMENT_SEQUENCE = {2};
     private static final int[] MULTI_ELEMENT_SEQUENCE = {-3, 0, 1, 2, 3, 4, 7, 10};
     private static final BinarySearch BINARY_SEARCH = BinarySearch.create();
+    private static final int NOT_FOUND_POSITION = -1;
 
     @Test void searchForElementInSequence() {
         final int KEY = 2;
@@ -22,12 +25,11 @@ class BinarySearchTests {
 
     @Test void searchForElementNotInSequence() {
         final int KEY = 1;
-        final int EXPECTED_POSITION = -1;
 
         SearchResult searchResult = BINARY_SEARCH.search(KEY, ONE_ELEMENT_SEQUENCE);
 
         Assertions.assertFalse(searchResult.isFound());
-        Assertions.assertEquals(searchResult.getPosition(), EXPECTED_POSITION);
+        Assertions.assertEquals(searchResult.getPosition(), NOT_FOUND_POSITION);
     }
 
     @Test void searchForElementAtFirstPositionInMultiSequence() {
@@ -65,11 +67,19 @@ class BinarySearchTests {
 
     @Test void searchForElementNotInMultiSequence() {
         final int KEY = 5;
-        final int EXPECTED_POSITION = -1;
 
         SearchResult searchResult = BINARY_SEARCH.search(KEY, MULTI_ELEMENT_SEQUENCE);
 
         Assertions.assertFalse(searchResult.isFound());
-        Assertions.assertEquals(searchResult.getPosition(), EXPECTED_POSITION);
+        Assertions.assertEquals(searchResult.getPosition(), NOT_FOUND_POSITION);
+    }
+
+    @Test void searchForElementInEmptySequence() {
+        final int KEY = 5;
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            BINARY_SEARCH.search(KEY, EMPTY_SEQUENCE);
+        });
+
     }
 }
