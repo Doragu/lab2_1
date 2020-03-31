@@ -80,6 +80,13 @@ class BinarySearchTests {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             BINARY_SEARCH.search(KEY, EMPTY_SEQUENCE);
         });
+    }
 
+    @Test void searchForElementInNullSequence() {
+        final int KEY = 5;
+
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            BINARY_SEARCH.search(KEY, NULL_SEQUENCE);
+        });
     }
 }
