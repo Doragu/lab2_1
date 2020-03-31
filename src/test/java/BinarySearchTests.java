@@ -92,4 +92,12 @@ class BinarySearchTests {
             BINARY_SEARCH.search(KEY, NULL_SEQUENCE);
         });
     }
+
+    @Test void searchForNullElementInSequence() {
+        final Integer KEY = null;
+
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            BINARY_SEARCH.search(KEY, ONE_ELEMENT_SEQUENCE);
+        });
+    }
 }
