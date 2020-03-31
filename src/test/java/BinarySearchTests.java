@@ -18,4 +18,14 @@ class BinarySearchTests {
         Assertions.assertEquals(searchResult.getPosition(), EXPECTED_POSITION);
         Assertions.assertEquals(SEARCH_SEQUENCE[searchResult.getPosition()], KEY);
     }
+
+    @Test void searchForElementNotInSequence() {
+        final int KEY = 1;
+        final int EXPECTED_POSITION = -1;
+
+        SearchResult searchResult = BINARY_SEARCH.search(KEY, SEARCH_SEQUENCE);
+
+        Assertions.assertFalse(searchResult.isFound());
+        Assertions.assertEquals(searchResult.getPosition(), EXPECTED_POSITION);
+    }
 }
