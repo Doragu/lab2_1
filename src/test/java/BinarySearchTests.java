@@ -62,4 +62,14 @@ class BinarySearchTests {
         Assertions.assertEquals(searchResult.getPosition(), EXPECTED_POSITION);
         Assertions.assertEquals(MULTI_ELEMENT_SEQUENCE[searchResult.getPosition()], KEY);
     }
+
+    @Test void searchForElementNotInMultiSequence() {
+        final int KEY = 5;
+        final int EXPECTED_POSITION = -1;
+
+        SearchResult searchResult = BINARY_SEARCH.search(KEY, MULTI_ELEMENT_SEQUENCE);
+
+        Assertions.assertFalse(searchResult.isFound());
+        Assertions.assertEquals(searchResult.getPosition(), EXPECTED_POSITION);
+    }
 }
